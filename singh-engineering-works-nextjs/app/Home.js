@@ -1,5 +1,5 @@
-import Hero from '@/components/Hero'
-import ServiceCard from '@/components/ServiceCard'
+import Hero from '@/Component/Hero'
+import ServiceCard from '@/Component/ServiceCard'
 import Link from 'next/link'
 
 export default function Home() {
