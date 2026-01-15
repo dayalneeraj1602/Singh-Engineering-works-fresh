@@ -1,15 +1,16 @@
 'use client'
 
 import { useEffect, useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const Contact = () => {
-  const mailkey = process.env.REACT_APP_FORMSPREE_ID;
+  const mailkey = process.env.NEXT_PUBLIC_FORMSPREE_ID;
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const formik = {
+  const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
@@ -37,7 +38,7 @@ const Contact = () => {
         setLoading(false);
       }
     },
-  };
+  });
 
   return (
     <div className="container" style={{ marginTop: "8.5rem" }}>

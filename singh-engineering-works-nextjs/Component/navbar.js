@@ -43,8 +43,10 @@ const Navbar = () => {
         isScrolled < 50 && isHome
           ? "text-light"
           : isScrolled > 50
-          ? "scrolled "
-          : isScrolled >= 50 && isHome && "text-dark"
+          ? "scrolled"
+          : isHome
+          ? "text-light"
+          : "text-dark"
       }`}
     >
       <div className="navbar-brand d-inline-block fs-1 ls-2">

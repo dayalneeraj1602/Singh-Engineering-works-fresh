@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Singh Engineering Works - Innovating Furnaces Since 2001",
   description: "Leading manufacturer of industrial furnaces and engineering solutions in Noida. Specializing in furnace design, manufacturing, and metal tool room services.",
   keywords: "furnaces, industrial engineering, manufacturing, metal tool room, Noida",
+  metadataBase: new URL("http://localhost:3000"),
   openGraph: {
     title: "Singh Engineering Works",
     description: "Innovating Furnaces Since 2001",
@@ -62,7 +63,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script src="https://unpkg.com/aos@next/dist/aos.js" strategy="afterInteractive" onLoad={() => { AOS.init({ offset: 50 }); }} />
+        <Script src="https://unpkg.com/aos@next/dist/aos.js" strategy="afterInteractive" />
         <Navbar />
         <div className="App">
           {children}

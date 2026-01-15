@@ -13,6 +13,7 @@ const OurServices = () => {
       productTitle: "Furnace",
       ProductDescription: "High-temperature heating device used in industrial processes for material processing.",
       link: "/services/furnace",
+      icon: "fas fa-fire",
     },
     {
       id: 2,
@@ -20,6 +21,7 @@ const OurServices = () => {
       productTitle: "Metal Tool Room",
       ProductDescription: "Specialized metal tool room offering high-temperature heating solutions for industrial processes, ensuring precision and efficiency in material processing.",
       link: "/services/MetalToolRoom",
+      icon: "fas fa-tools",
     },
     {
       id: 3,
@@ -27,6 +29,7 @@ const OurServices = () => {
       productTitle: "Manufacturing",
       ProductDescription: "Comprehensive manufacturing services integrating cutting-edge technology to meet the diverse needs of industrial processes and material processing.",
       link: "/services/Manufacturing",
+      icon: "fas fa-industry",
     },
     {
       id: 4,
@@ -34,6 +37,7 @@ const OurServices = () => {
       productTitle: "Furnace Parts",
       ProductDescription: "High-quality furnace parts designed to enhance the performance and longevity of industrial heating systems, supporting seamless material processing.",
       link: "/services/FurnaceParts",
+      icon: "fas fa-cogs",
     },
   ];
 
@@ -91,6 +95,9 @@ const OurServices = () => {
                       textAlign: "center",
                     }}
                   >
+                    <div className="service-icon mb-3">
+                      <i className={item.icon} style={{ fontSize: "2rem", color: hover === item.id ? "white" : "#f91942" }}></i>
+                    </div>
                     <img
                       src={item.imgUrl}
                       alt={item.productTitle}

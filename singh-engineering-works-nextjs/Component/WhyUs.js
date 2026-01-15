@@ -107,6 +107,58 @@ const WhyUs = () => {
             </p>
           </div>
         </div>
+
+        {/* Skills Section */}
+        <div className="skills-section mt-5 pt-5">
+          <div className="section-head col-sm-12 mb-4">
+            <h4>
+              <span>Our</span> Expertise
+            </h4>
+            <p>Years of experience in furnace manufacturing and engineering</p>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="skill-item mb-4">
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Furnace Design</span>
+                  <span>95%</span>
+                </div>
+                <div className="progress">
+                  <div className="progress-bar bg-danger" style={{ width: '95%' }}></div>
+                </div>
+              </div>
+              <div className="skill-item mb-4">
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Manufacturing Quality</span>
+                  <span>90%</span>
+                </div>
+                <div className="progress">
+                  <div className="progress-bar bg-danger" style={{ width: '90%' }}></div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="skill-item mb-4">
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Customer Satisfaction</span>
+                  <span>98%</span>
+                </div>
+                <div className="progress">
+                  <div className="progress-bar bg-danger" style={{ width: '98%' }}></div>
+                </div>
+              </div>
+              <div className="skill-item mb-4">
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Technical Support</span>
+                  <span>92%</span>
+                </div>
+                <div className="progress">
+                  <div className="progress-bar bg-danger" style={{ width: '92%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

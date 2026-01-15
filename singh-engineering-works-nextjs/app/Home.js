@@ -5,6 +5,7 @@ import Link from "next/link";
 import OurProducts from "../Component/OurProducts";
 import WhyUs from "../Component/WhyUs";
 import OurServices from "../Component/OurServices";
+import AOSInit from "../Component/AOSInit";
 
 export const info = ` Est. 2001, Singh Engineering Works in Noida crafts quality
 Industrial Furnaces. As a Sole Proprietorship, we prioritize
@@ -15,22 +16,23 @@ const Home = () => {
   const [infoText, setInfoText] = useState("");
 
   useEffect(() => {
-    const intervalId = setTimeout(() => {
-      if (infoText.length !== info.length) {
-        setInfoText(infoText + info[infoText.length]);
-
-        if (infoText.length === info.length) {
+    const intervalId = setInterval(() => {
+      setInfoText((prevText) => {
+        if (prevText.length < info.length) {
+          return prevText + info[prevText.length];
+        } else {
           clearInterval(intervalId);
-          setInfoText(info);
+          return prevText;
         }
-      }
-    }, 6);
+      });
+    }, 50);
 
-    return () => clearTimeout(intervalId);
-  }, [infoText]);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="home">
+      <AOSInit />
       <section className="banner">
         <div className="overlay"></div>
 
