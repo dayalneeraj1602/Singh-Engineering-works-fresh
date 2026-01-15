@@ -1,72 +1,62 @@
-import Hero from '@/Component/Hero'
-import ServiceCard from '@/Component/ServiceCard'
-import Link from 'next/link'
+'use client'
 
-export default function Home() {
-  const services = [
-    {
-      title: 'Metal Fabrication',
-      description: 'Custom metal fabrication services with precision and quality',
-      icon: '🔧'
-    },
-    {
-      title: 'Industrial Manufacturing',
-      description: 'Large-scale manufacturing solutions for industrial needs',
-      icon: '🏭'
-    },
-    {
-      title: 'Equipment Repair',
-      description: 'Professional repair and maintenance services',
-      icon: '⚙️'
-    },
-    {
-      title: 'Custom Solutions',
-      description: 'Tailored engineering solutions for your specific requirements',
-      icon: '🛠️'
-    }
-  ]
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import OurProducts from "../Component/OurProducts";
+import WhyUs from "../Component/WhyUs";
+import OurServices from "../Component/OurServices";
+
+export const info = ` Est. 2001, Singh Engineering Works in Noida crafts quality
+Industrial Furnaces. As a Sole Proprietorship, we prioritize
+standards, offering competitive rates. Led by Prabhudayal Singh,
+we've secured a strong market position.`;
+
+const Home = () => {
+  const [infoText, setInfoText] = useState("");
+
+  useEffect(() => {
+    const intervalId = setTimeout(() => {
+      if (infoText.length !== info.length) {
+        setInfoText(infoText + info[infoText.length]);
+
+        if (infoText.length === info.length) {
+          clearInterval(intervalId);
+          setInfoText(info);
+        }
+      }
+    }, 6);
+
+    return () => clearTimeout(intervalId);
+  }, [infoText]);
 
   return (
-    <>
-      <Hero />
-      
-      <section className="services-section">
-        <div className="container">
-          <h2 className="section-title">Our Services</h2>
-          <p className="section-subtitle">
-            Providing comprehensive engineering solutions for all your industrial needs
-          </p>
-          
-          <div className="services-grid">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
-            ))}
-          </div>
+    <div className="home">
+      <section className="banner">
+        <div className="overlay"></div>
 
-          <div className="cta-button-container">
-            <Link href="/services" className="cta-button">
-              View All Services
+        <div className="punch-line">
+          <h1 className="headline">Innovating Furnaces</h1>
+          <h1 className="headline since">Since 2001.</h1>
+
+          <p className="info text-start">{infoText}</p>
+
+          <div className="Explore">
+            <Link
+              href="/products"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              <button className="btn fs-5 btn-outline-light">Explore</button>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="about-preview">
-        <div className="container">
-          <div className="about-content">
-            <h2>About Singh Engineering Works</h2>
-            <p>
-              With decades of experience in industrial engineering and manufacturing,
-              we deliver quality solutions that exceed expectations. Our commitment
-              to excellence and customer satisfaction makes us the preferred choice
-              for businesses across industries.
-            </p>
-            <Link href="/about" className="learn-more-link">
-              Learn More About Us →
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
-  )
-}
+      {/* -----------Sections below hero--------- */}
+      <OurProducts />
+      <WhyUs />
+      <OurServices />
+    </div>
+  );
+};
+
+export default Home;

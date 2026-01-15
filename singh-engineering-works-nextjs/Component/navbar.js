@@ -1,127 +1,133 @@
 'use client'
 
-import Link from 'next/link'
-import { useState } from 'react'
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import "../styles/Navbar.css";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const isHome = pathname === "/";
+  const isProducts = pathname === "/products";
+  const isServices = pathname === "/services";
+  const isAbout = pathname === "/about";
+  const isContact = pathname === "/contact";
+
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <>
-      <nav className="navbar">
-        <div className="container navbar-container">
-          <Link href="/" className="navbar-brand">
-            Singh Engineering Works
-          </Link>
+    <div
+      className={`navbar d-flex shadow-out pop sticky-header ${
+        isScrolled < 50 && isHome
+          ? "text-light"
+          : isScrolled > 50
+          ? "scrolled "
+          : isScrolled >= 50 && isHome && "text-dark"
+      }`}
+    >
+      <div className="navbar-brand d-inline-block fs-1 ls-2">
+        <Link className="navbar-brand brand ms-5 fw-bold fs-4 d-flex" href="/">
+          <div className="logo mx-2 d-flex">
+            <img src="/logosew.png" alt="logo" className="logo" />
+            <span
+              className={`
+            ${isScrolled < 50 && isHome ? "text-light" : "text-dark"}
+            `}
+            >
+              Singh Engineering Works
+            </span>
+          </div>
+        </Link>
+      </div>
 
-          <button 
-            className="navbar-toggle"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+      {/* Hamburger Menu Button */}
+      <button
+        className={`hamburger ${isMobileMenuOpen ? "active" : ""}`}
+        onClick={toggleMobileMenu}
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-          <ul className={`navbar-menu ${isOpen ? 'active' : ''}`}>
-            <li><Link href="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-            <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
-            <li><Link href="/services" onClick={() => setIsOpen(false)}>Services</Link></li>
-            <li><Link href="/products" onClick={() => setIsOpen(false)}>Products</Link></li>
-            <li><Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link></li>
-            <li><Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
-          </ul>
-        </div>
-      </nav>
+      {/* Navigation Items */}
+      <div
+        className={`nav-items me-5 ${isMobileMenuOpen ? "mobile-open" : ""}`}
+      >
+        <Link
+          href="/"
+          title="Home"
+          className={isHome ? "active" : ""}
+          onClick={handleLinkClick}
+        >
+          Home
+        </Link>
+        <Link
+          href="/products"
+          title="Products"
+          onClick={handleLinkClick}
+          className={isProducts ? "active" : ""}
+        >
+          Products
+        </Link>
+        <Link
+          href="/services"
+          title="Services"
+          onClick={handleLinkClick}
+          className={isServices ? "active" : ""}
+        >
+          Services
+        </Link>
+        <Link
+          href="/gallery"
+          title="Gallery"
+          onClick={handleLinkClick}
+          className={pathname === "/gallery" ? "active" : ""}
+        >
+          Gallery
+        </Link>
+        <Link
+          href="/about"
+          title="About us"
+          className={isAbout ? "active" : ""}
+          onClick={handleLinkClick}
+        >
+          About us
+        </Link>
+        <Link
+          href="/contact"
+          title="Contact Us"
+          className={isContact ? "active" : ""}
+          onClick={handleLinkClick}
+        >
+          Contact Us
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-      <style jsx>{`
-        .navbar {
-          background-color: var(--primary-color);
-          padding: 1rem 0;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .navbar-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .navbar-brand {
-          color: var(--white);
-          font-size: 1.5rem;
-          font-weight: bold;
-          text-decoration: none;
-        }
-
-        .navbar-toggle {
-          display: none;
-          flex-direction: column;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-        }
-
-        .navbar-toggle span {
-          width: 25px;
-          height: 3px;
-          background-color: var(--white);
-          margin: 3px 0;
-          transition: 0.3s;
-        }
-
-        .navbar-menu {
-          display: flex;
-          list-style: none;
-          gap: 2rem;
-          margin: 0;
-        }
-
-        .navbar-menu a {
-          color: var(--white);
-          text-decoration: none;
-          font-weight: 500;
-          transition: color 0.3s ease;
-        }
-
-        .navbar-menu a:hover {
-          color: var(--secondary-color);
-        }
-
-        @media (max-width: 768px) {
-          .navbar-toggle {
-            display: flex;
-          }
-
-          .navbar-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: var(--primary-color);
-            flex-direction: column;
-            padding: 1rem;
-            gap: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-          }
-
-          .navbar-menu.active {
-            max-height: 400px;
-          }
-
-          .navbar-menu li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-          }
-        }
-      `}</style>
-    </>
-  )
-}
+export default Navbar;

@@ -1,0 +1,123 @@
+/* Add this CSS to your stylesheets */
+
+.sticky-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  background: transparent;
+  top: 0px;
+  z-index: 999;
+  width: 100%;
+  border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+  transition: 0.3s ease;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: lighter;
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar-brand img {
+  width: 55px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.nav-items {
+  display: flex;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 30px;
+  font-weight: 500;
+}
+
+.nav-items a.active {
+  color: #f91942;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -5px);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .sticky-header {
+    padding: 10px 20px;
+  }
+
+  .navbar-brand.ms-5 {
+    margin-left: 0 !important;
+  }
+
+  .navbar-brand span {
+    font-size: 18px !important;
+  }
+
+  .navbar-brand img {
+    width: 40px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-items {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 !important;
+  }
+
+  .nav-items.mobile-open {
+    right: 0;
+  }
+
+  .nav-items a {
+    margin-right: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+}

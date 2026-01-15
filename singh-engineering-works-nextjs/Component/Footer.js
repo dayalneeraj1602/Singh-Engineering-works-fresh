@@ -1,131 +1,96 @@
 'use client'
 
-import Link from 'next/link'
+import Link from "next/link";
+import "../styles/Footer.css";
 
-export default function Footer() {
+const Footer = () => {
+  const companyAddress = "B-16, B Block, Sector 64, Noida - 201301";
+  const googleMapsLink = `https://www.google.com/maps/dir//${encodeURIComponent(
+    companyAddress
+  )}/`;
+
   return (
-    <>
-      <footer className="footer">
-        <div className="container footer-container">
-          <div className="footer-section">
-            <h3>Singh Engineering Works</h3>
-            <p>Your trusted partner for industrial solutions</p>
+    <footer className="footer py-5">
+      <div className="container">
+        <div className="row justify-content-between">
+          <div className="col-md-6 d-flex justify-content-around flex-column">
+            <div className="address">
+              <h4 className="">Address</h4>
+              <div className="s-border"></div>
+              <div className="m-border"></div>
+              <div className="ps-2">
+                <p>
+                  <i className="fa-solid fa-location-dot me-2"></i>
+                  {companyAddress}
+                </p>
+                <p>
+                  <i className="fa-solid fa-envelope me-2"></i>{" "}
+                  prabhudayal.singh@gmail.com
+                </p>
+                <p>
+                  <i className="fa-solid fa-envelope me-2"></i>{" "}
+                  singhengineeringworks.1978@gmail.com
+                </p>
+                <p>
+                  <i className="fa-solid fa-phone me-2"></i> +91 9810802982
+                </p>
+                <p>
+                  <i className="fa-solid fa-phone me-2"></i> +91 9810804532
+                </p>
+              </div>
+            </div>
+            <div className="timing">
+              <h4>Opening Hours</h4>
+              <div className="s-border"></div>
+              <div className="m-border"></div>
+              <div className="ps-2">
+                <p>
+                  <i className="me-2 fa-solid fa-clock"></i>Monday - Saturday:
+                  9:00 am - 5:30 pm
+                </p>
+                <p>
+                  <i className="fa-solid fa-star me-2"></i>Sun: Holiday
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/products">Products</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <h4>Contact Info</h4>
-            <p>Email: info@singhengineeringworks.com</p>
-            <p>Phone: +91 XXX XXX XXXX</p>
-            <p>Address: Your Address Here</p>
-          </div>
-
-          <div className="footer-section">
-            <h4>Follow Us</h4>
-            <div className="social-links">
-              <a href="#" aria-label="Facebook">FB</a>
-              <a href="#" aria-label="Twitter">TW</a>
-              <a href="#" aria-label="LinkedIn">LI</a>
+          <div className="col-md-5 d-flex maps flex-column">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5d3c20bedb7%3A0xc6237134267e953b!2sSingh%20Engineering%20Works!5e0!3m2!1sen!2sin!4v1765634128605!5m2!1sen!2sin"
+              width="100%"
+              height="300"
+              style={{ borderRadius: "8px" }}
+              allowFullScreen=""
+              loading="lazy"
+              title="map"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div className="mt-4 text-start">
+              <a
+                href={googleMapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-start d-flex align-items-center text-decoration-none"
+              >
+                <i className="fa-solid fa-diamond-turn-right me-2"></i>Get
+                Directions
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <div className="container">
-            <p>&copy; 2024 Singh Engineering Works. All rights reserved.</p>
+        {/* Copyright Section */}
+        <div className="row mt-4 pt--4 border-top">
+          <div className="col-12 text-center">
+            <p className="mb-0">
+              © 2025 The Singh Engineering Works. All Rights Reserved.
+            </p>
           </div>
         </div>
-      </footer>
+      </div>
+    </footer>
+  );
+};
 
-      <style jsx>{`
-        .footer {
-          background-color: var(--primary-color);
-          color: var(--white);
-          padding: 50px 0 0;
-        }
-
-        .footer-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 30px;
-          margin-bottom: 30px;
-        }
-
-        .footer-section h3, .footer-section h4 {
-          margin-bottom: 15px;
-          color: var(--white);
-        }
-
-        .footer-section ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        .footer-section ul li {
-          margin-bottom: 10px;
-        }
-
-        .footer-section a {
-          color: rgba(255,255,255,0.8);
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-          color: var(--secondary-color);
-        }
-
-        .footer-section p {
-          color: rgba(255,255,255,0.8);
-          margin-bottom: 8px;
-        }
-
-        .social-links {
-          display: flex;
-          gap: 15px;
-        }
-
-        .social-links a {
-          width: 40px;
-          height: 40px;
-          background-color: rgba(255,255,255,0.1);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-          background-color: var(--secondary-color);
-        }
-
-        .footer-bottom {
-          border-top: 1px solid rgba(255,255,255,0.1);
-          padding: 20px 0;
-          text-align: center;
-        }
-
-        .footer-bottom p {
-          color: rgba(255,255,255,0.6);
-          margin: 0;
-        }
-
-        @media (max-width: 768px) {
-          .footer-container {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-    </>
-  )
-}
+export default Footer;
